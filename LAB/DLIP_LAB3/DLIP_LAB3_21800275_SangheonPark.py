@@ -47,7 +47,7 @@ for i in range(3):
 
     element = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3)) # cv.MORPH_ELLIPSE, cv.MORPH_CROSS, cv.MORPH_RECT
     canny_img = cv2.morphologyEx(canny_img, cv2.MORPH_DILATE, element, canny_img, (-1,-1),1)     # cv.MORPH_ERODE, cv.MORPH_DILATE, cv.MORPH_OPEN, cv.MORPH_CLOSE, cv.MORPH_GRADIENT
-
+    
     contour, hierarchy = cv2.findContours(canny_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     arr_point = np.empty([0,2])

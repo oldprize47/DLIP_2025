@@ -7,6 +7,7 @@
 *.idb
 *.user
 *.mp4
-Debug
-.vs
-x64
+*.exe
+Debug/
+.vs/
+x64/
