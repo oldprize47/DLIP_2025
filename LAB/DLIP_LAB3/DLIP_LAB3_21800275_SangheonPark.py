@@ -21,12 +21,12 @@ def mask_ROI(canny_img):
     cv.rectangle(canny_img, (0, 0), (int(canny_img.shape[1] / 4), int(canny_img.shape[0] * 5 / 12)), 0, cv.FILLED)
     cv.rectangle(canny_img, (0, 0), (int(canny_img.shape[1]), int(canny_img.shape[0] * 3 / 12)), 0, cv.FILLED)
 
-    # 2 Triangles
+    # 2 triangles
+
     pts1 = np.array([[int(canny_img.shape[1] / 2), 0], [int(canny_img.shape[1] * 5 / 12), int(canny_img.shape[0])], [int(canny_img.shape[1]), int(canny_img.shape[0])]])
-    cv.fillPoly(canny_img, [pts1], 0)
-    
+    cv.fillPoly(canny_img, [pts1], 0) # 1
     pts2 = np.array([[int(canny_img.shape[1] * 7 / 12), 0], [int(canny_img.shape[1] * 4 / 12), int(canny_img.shape[0])], [int(canny_img.shape[1]), int(canny_img.shape[0])]])
-    cv.fillPoly(canny_img, [pts2], 0)
+    cv.fillPoly(canny_img, [pts2], 0) # 2
 
 def valid_cont_point(contour):
     arr_point = np.empty([0,2])

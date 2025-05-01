@@ -24,9 +24,9 @@ Mat backGround, loopImage;
 int hmin = 16, hmax = 17, smin = 100, smax = 255, vmin = 100, vmax = 255;
 
 int main()
-{	
+{
 	VideoCapture cap("LAB_MagicCloak_Sample1.mp4");
-	VideoWriter outputVideo;
+	VideoWriter outputVideo;	// for Recording
 	Mat image_disp, hsv, mask, dst, dst1, dst2, final_image;
 	vector<vector<Point> > contours;
 	bool bRec = 0;
@@ -41,7 +41,7 @@ int main()
 
 	while (true)
 	{
-		
+
 		bool bSuccess = cap.read(loopImage);
 		if (!bSuccess)	// if not success, break loop
 		{
@@ -61,8 +61,6 @@ int main()
 		inRange(hsv, Scalar(MIN(hmin, hmax), MIN(smin, smax), MIN(vmin, vmax)),
 			Scalar(MAX(hmin, hmax), MAX(smin, smax), MAX(vmin, vmax)), dst);
 
-		imshow("inRange", dst);
-
 		mophology(dst);
 
 		///  Find All Contour   ///
@@ -74,11 +72,15 @@ int main()
 
 			Mat mask = make_Mask(boxPoint, image_disp);
 
-			bitwise_and_Merge(image_disp, backGround, mask, final_image);
-
-			imshow("Final", final_image);
+			bitwise_and_Merge(loopImage, backGround, mask, final_image);
+		}
+		else {
+			final_image = loopImage;
 		}
 
+		imshow("Final", final_image);
+
+		/*****************	for Recording	*******************/
 		if (!bRec) {
 			outputVideo.open("Sample1_1.mp4",
 				VideoWriter::fourcc('M', 'P', '4', 'V'),
@@ -88,6 +90,7 @@ int main()
 
 		if (bRec)
 			outputVideo.write(final_image);
+		/******************************************************/
 
 		char c = (char)waitKey(10);
 		if (c == 27)
@@ -95,7 +98,7 @@ int main()
 	} // end of for(;;)
 
 	outputVideo.release();
-	
+
 	return 0;
 }
 
@@ -129,8 +132,8 @@ Mat make_Mask(Rect& boxPoint, Mat& image) {
 	return mask;
 }
 
-void bitwise_and_Merge(Mat& image_disp, Mat& backGround, Mat& mask, Mat& final_image) {
-	Mat dst1 = image_disp & mask;
+void bitwise_and_Merge(Mat& loopImage, Mat& backGround, Mat& mask, Mat& final_image) {
+	Mat dst1 = loopImage & mask;
 	mask = ~mask;
 	Mat dst2 = backGround & mask;
 	final_image = dst1 + dst2;

@@ -80,6 +80,7 @@ int main()
 
 		imshow("Final", final_image);
 
+		/*****************	for Recording	*******************/
 		if (!bRec) {
 			outputVideo.open("Final.mp4",
 				VideoWriter::fourcc('M', 'P', '4', 'V'),
@@ -89,7 +90,8 @@ int main()
 
 		if (bRec)
 			outputVideo.write(final_image);
-
+		/******************************************************/
+		
 		char c = (char)waitKey(10);
 		if (c == 27)
 			break;
