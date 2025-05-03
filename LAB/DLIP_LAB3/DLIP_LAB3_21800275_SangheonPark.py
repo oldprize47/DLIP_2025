@@ -98,6 +98,9 @@ for i in range(3):
 
     mask_ROI(canny_img)
 
+    # cv.namedWindow(f'mask_ROI - {i}', 0)
+    # cv.imshow(f'mask_ROI - {i}', canny_img)
+
     element = cv.getStructuringElement(cv.MORPH_ELLIPSE, (3,3)) # cv.MORPH_ELLIPSE, cv.MORPH_CROSS, cv.MORPH_RECT
     morp_img = cv.morphologyEx(canny_img, cv.MORPH_DILATE, element)     # cv.MORPH_ERODE, cv.MORPH_DILATE, cv.MORPH_OPEN, cv.MORPH_CLOSE, cv.MORPH_GRADIENT
 
