@@ -36,8 +36,9 @@ int main(int argc, char** argv)
 			printf(" Error opening image\n");
 			return -1;
 		}
-		// Edge detection
+        // Apply Canny edge detector
 		Canny(src, dst, 200, 50, 3);
+        // Mask non-road areas to focus on lane region
 		mask_Outside_ROI(dst);
 
 		line_Detect(dst, lines);
@@ -68,7 +69,7 @@ void mask_Outside_ROI(Mat& dst) {
 }
 
 void line_Detect(Mat& dst, vector<Vec2f>* lines) {
-	// Standard Hough Line Transform
+    // Detect left and right lane lines using HoughLines with angle thresholds
 	HoughLines(dst, lines[0], 1, CV_PI / 180, 44, 0, 0, 20 * CV_PI / 180, 60 * CV_PI / 180);
 	HoughLines(dst, lines[1], 1, CV_PI / 180, 70, 0, 0, 290 * CV_PI / 180, 330 * CV_PI / 180);
 }
@@ -83,6 +84,7 @@ void convert_Line2Point(vector<Vec2f>* lines, Point* pt1, Point* pt2) {
 			rho += lines[j][i][0];
 			theta += lines[j][i][1];
 		}
+        // Compute average rho and theta for a stable representative line
 		rho /= lines[j].size();
 		theta /= lines[j].size();
 
@@ -113,7 +115,7 @@ Point find_Vanishing_Point(Point* pt1, Point* pt2) {
 		A2, B2);
 	Vec2f B(C1, C2);
 	Vec2f solution;
-
+    // Solve the linear system Ax = b via LU decomposition to find intersection
 	bool success = solve(A, B, solution, DECOMP_LU);
 
 	if (success) {
@@ -127,6 +129,7 @@ Point find_Vanishing_Point(Point* pt1, Point* pt2) {
 }
 
 void draw_Lines(Mat& dst, Point* pt1, Point& vanishing_Point) {
+    // Draw lane lines (red/green), vanishing point, and deviation indicator
 	for (int j = 0; j < 2; j++) {
 		if (j % 2 == 0) {
 			line(dst, pt1[j], vanishing_Point, Scalar(0, 0, 255), 3, LINE_AA);
