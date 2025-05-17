@@ -1,4 +1,6 @@
 /filter_test_images
+**/data
+**/models
 *.sln
 *.vcxproj
 *.filters
@@ -7,7 +9,10 @@
 *.idb
 *.user
 *.mp4
+*.avi
 *.exe
 Debug/
 .vs/
 x64/
+*.jpg
+*.pyc
