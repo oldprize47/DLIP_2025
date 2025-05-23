@@ -1,6 +1,8 @@
-/filter_test_images
+**/filter_test_images
 **/data
 **/models
+**/datasets
+**/runs
 *.sln
 *.vcxproj
 *.filters
@@ -15,4 +17,6 @@ Debug/
 .vs/
 x64/
 *.jpg
+*.png
 *.pyc
+*.pt
