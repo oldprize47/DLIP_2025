@@ -70,6 +70,14 @@ def initialize_model(model_name, num_classes, feature_extract, use_pretrained=Tr
         model_ft.classifier[1] = nn.Linear(num_ftrs, num_classes)  # 1024 -> num_classes(ex. 2)
         input_size = 600
 
+    elif model_name == "convnext_large":
+        """convnext_large"""
+        model_ft = models.convnext_large(pretrained=use_pretrained)
+        set_parameter_requires_grad(model_ft, feature_extract)
+        num_ftrs = model_ft.classifier[-1].in_features
+        model_ft.classifier[-1] = nn.Linear(num_ftrs, num_classes) # 1536 -> num_classes(ex. 2)
+        input_size = 224
+
     elif model_name == "inception":
         """Inception v3
         Be careful, expects (299,299) sized images and has auxiliary output

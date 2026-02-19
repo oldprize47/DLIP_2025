@@ -3,6 +3,9 @@
 **/models
 **/datasets
 **/runs
+**/bin
+**/Lib
+**/Scripts
 *.sln
 *.vcxproj
 *.filters
@@ -20,3 +23,6 @@ x64/
 *.png
 *.pyc
 *.pt
+*.xml
+*.iml
+*.docx

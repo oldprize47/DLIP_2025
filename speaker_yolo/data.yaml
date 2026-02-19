@@ -1,0 +1,6 @@
+path: C:/Users/Sangheon/source/repos/2025_1/DLIP/speaker_yolo
+train: images/train
+val: images/val
+
+names:
+  0: bluetooth_speaker
