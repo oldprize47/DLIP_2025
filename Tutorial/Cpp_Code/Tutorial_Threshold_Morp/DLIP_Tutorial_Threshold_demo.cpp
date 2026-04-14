@@ -14,7 +14,7 @@ int main()
 {
 	Mat src, src_gray, dst, dst_morph;
 
-	src = imread("../../Image/coin.jpg", 0);    // Load an image (DLIP/Image/coin.jpg)
+	src = imread("../../../Image/localThresh1.jpg", 0);    // Load an image (DLIP/Image/coin.jpg)
 
 	if (src.empty())					// Load image check
 	{
@@ -38,8 +38,8 @@ int main()
 	int const max_type = 4;
 	int const max_BINARY_value = 255;
 
-	threshold(src, dst, threshold_value, max_BINARY_value, threshold_type);
-
+	//threshold(src, dst, threshold_value, max_BINARY_value, threshold_type);
+    adaptiveThreshold(src, dst, max_BINARY_value, ADAPTIVE_THRESH_MEAN_C, threshold_type, 7, 11);
 	// Create a window to display results
 	namedWindow("ThreshWIndow", WINDOW_AUTOSIZE); //WINDOW_AUTOSIZE(1) :Fixed Window, 0: Unfixed window
 	imshow("ThreshWIndow", dst); // Show image

@@ -1,5 +1,5 @@
 //#include "TU_DLIP.h"
-#include "../../IncludeDLIP/TU_DLIP.h"
+#include "../../../Include/TU_DLIP.h"
 
 #include <iostream>
 
@@ -13,6 +13,5 @@ int main()
 
 	int out = sum(val1, val2);
 
-
-	std::cout << out << std::endl;
+	std::cout << "Result: " << out << std::endl;
 }

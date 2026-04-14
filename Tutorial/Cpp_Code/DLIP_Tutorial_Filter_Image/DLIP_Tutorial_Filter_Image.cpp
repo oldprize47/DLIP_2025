@@ -12,7 +12,7 @@ using namespace cv;
 void main()
 {
 	cv::Mat src, dst;
-	src = cv::imread("../../Image/blurry_moon.tif", 0);
+	src = cv::imread("../../../Image/blurry_moon.tif", 0);
 
 	int i = 3;
 	Size kernelSize = cv::Size(i, i);
@@ -21,7 +21,7 @@ void main()
 	imshow("Origin", src);
 
 	/* Blur */
-	cv::blur(src, dst, cv::Size(i, i), cv::Point(-1, -1));
+    cv::blur(src, dst, kernelSize, cv::Point(-1, -1));
 	namedWindow("Blur", WINDOW_AUTOSIZE); // WINDOW_NORMAL
 	imshow("Blur", dst);
 
@@ -50,26 +50,34 @@ void main()
 	// recover, re-convert
 	result_laplcaian.convertTo(result_laplcaian, CV_8U);
 	
-	namedWindow("Laplacian", WINDOW_AUTOSIZE);
-	cv::imshow("Laplacian", result_laplcaian);
+	namedWindow("Laplacian_org", WINDOW_AUTOSIZE);
+	cv::imshow("Laplacian_org", result_laplcaian);
+
+
 
 
 	/* 2D Convolution of a filter kernel */
 	/* Design a normalized box filter kernel 5 by 5 */
-	src.convertTo(src, CV_8UC1);
+    //src.convertTo(src, CV_16S);
+    src.convertTo(src, CV_16S);
 	Mat kernel;
 	kernel = (cv::Mat_<float>(3, 3) <<
 		-1, -1, -1,
 		-1, 8, -1,
 		-1, -1, -1);
+    kernel = cv::Mat::ones(kernel_size,kernel_size,CV_32F);
+    kernel = kernel / (kernel_size * kernel_size);
 	delta = 0.0;
 	ddepth = -1;
-	kernel_size = 5;
 	Point anchor = Point(-1, -1);
 	cv::filter2D(src, dst, ddepth, kernel, anchor,delta);
-
+    //src.convertTo(src, CV_8U);
+    //dst.convertTo(dst, CV_8U);
+    //dst = dst + 25;
+    dst = src + dst;
+    dst.convertTo(dst, CV_8U);
 	namedWindow("Conv2D", WINDOW_AUTOSIZE);
-	cv::imshow("Conv2D", src + dst);
+    cv::imshow("Conv2D", dst);
 
 	cv::waitKey(0);
 }

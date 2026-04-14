@@ -41,6 +41,8 @@ proj_A::MyNum::MyNum(int x1, int x2, int x3)
 	val1 = x1;
 	val2 = x2;
 	val3 = x3;
+
+	std::cout << "In construct!! " << "val1 = " << val1 << ", val2 = " << val2 << ", val3 = " << val3 << std::endl;
 }
 
 int proj_A::MyNum::sum(void)

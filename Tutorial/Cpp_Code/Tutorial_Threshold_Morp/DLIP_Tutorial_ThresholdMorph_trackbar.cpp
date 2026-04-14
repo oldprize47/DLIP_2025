@@ -46,7 +46,7 @@ int main()
 {
 	// Load an image
 	//src = imread("../../Image/Finger_print_gray.tif", IMREAD_COLOR);
-	src = imread("../../Image/testImage/" + imgName[0], IMREAD_COLOR);
+	src = imread("../../../Image/testImage/" + imgName[0], IMREAD_COLOR);
 	if (src.empty())
 	{
 		return EXIT_FAILURE;
@@ -79,7 +79,7 @@ int main()
 
 void Img_Demo(int, void*)	// default form of callback function for trackbar
 {
-	src = imread("../../Image/testImage/" + imgName[img_num], IMREAD_COLOR);
+	src = imread("../../../Image/testImage/" + imgName[img_num], IMREAD_COLOR);
 	// Convert the image to Gray
 	cvtColor(src, src_gray, COLOR_BGR2GRAY);
 	imshow(window_name, src_gray);

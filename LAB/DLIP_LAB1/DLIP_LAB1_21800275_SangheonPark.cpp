@@ -41,8 +41,8 @@ int main() {
 		thresholding_and_Morphology(src[i], dst[i]);
 
 		// Result Thresholding_and_Morphology
-		namedWindow(imgName[i] + " - temp1", WINDOW_AUTOSIZE);
-		imshow(imgName[i] + " - temp1", dst[i]);
+		//namedWindow(imgName[i] + " - temp1", WINDOW_AUTOSIZE);
+		//imshow(imgName[i] + " - temp1", dst[i]);
 	}
 
 	Mat src1 = src[0];
@@ -52,8 +52,8 @@ int main() {
 		findContours(dst[i], contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE, Point(0, 0)); // RETR_EXTERNAL, RETR_LIST, RETR_CCOMP, RETR_TREE , RETR_FLOODFILL
 
 		// Result Gear_Teeth_Segmentation
-		namedWindow(imgName[i] + " - temp2", WINDOW_AUTOSIZE);
-		imshow(imgName[i] + " - temp2", dst[i]);
+		//namedWindow(imgName[i] + " - temp2", WINDOW_AUTOSIZE);
+		//imshow(imgName[i] + " - temp2", dst[i]);
 
 		Find_mean_avg();
 
@@ -145,8 +145,8 @@ void show_Img_Info(int i) {
 	namedWindow(imgName[i] + " - text", WINDOW_AUTOSIZE);
 	imshow(imgName[i] + " - text", drawing_with_text[i]);
 
-	namedWindow(imgName[i] + " - contour", WINDOW_AUTOSIZE);
-	imshow(imgName[i] + " - contour", drawing[i]);
+	//namedWindow(imgName[i] + " - contour", WINDOW_AUTOSIZE);
+	//imshow(imgName[i] + " - contour", drawing[i]);
 
 	namedWindow(imgName[i] + " - Output", WINDOW_AUTOSIZE);
 	imshow(imgName[i] + " - Output", dst[i]);

@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     //! [Load image]
     //CommandLineParser parser(argc, argv, "{@input | coin.jpg | input image}");
     //Mat src = imread(samples::findFile(parser.get<String>("@input")), 0);
-    Mat src = imread("../../Image/coin.jpg", 0);
+    Mat src = imread("../../../Image/localThresh1.jpg", 0);
     if (src.empty())
     {
         return EXIT_FAILURE;

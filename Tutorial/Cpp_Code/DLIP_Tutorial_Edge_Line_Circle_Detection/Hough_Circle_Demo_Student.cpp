@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 
 	for (int i = 0; i < 2; i++) {
 
-		src = imread("./Image/" + filename[i], 1);
+		src = imread("../../../Image/" + filename[i], 1);
 
 		if (!src.data)
 		{

@@ -109,6 +109,7 @@ void mophology(Mat& dst) {
 	morphologyEx(dst, dst, MORPH_CLOSE, element, Point(-1, -1), 4); // Closing 4 times
 	morphologyEx(dst, dst, MORPH_DILATE, element, Point(-1, -1), 5); // Dilation 5 times
 }
+
 Rect find_MaxArea_and_Get_BoxPoint(vector<vector<Point>>& contours) {
 	/// Find the Contour with the largest area ///
 	double maxArea = 0;
@@ -123,6 +124,7 @@ Rect find_MaxArea_and_Get_BoxPoint(vector<vector<Point>>& contours) {
 	/// Return Box Point ///
 	return boundingRect(contours[maxArea_idx]);
 }
+
 Mat make_Mask(Rect& boxPoint, Mat& image) {
 	Mat mask = Mat::Mat(image.size(), CV_8UC3, Scalar(255, 255, 255));
 	/// Continue Drawing the Contour Box on Mask  ///
